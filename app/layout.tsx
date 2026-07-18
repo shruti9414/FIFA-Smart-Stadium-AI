@@ -52,7 +52,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="flex min-h-full flex-col bg-void font-sans text-text-primary antialiased">
         <Providers>
           {children}
-          <InstallPrompt />
         </Providers>
       </body>
     </html>

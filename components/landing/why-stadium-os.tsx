@@ -17,16 +17,16 @@ export function WhyStadiumOS() {
   const reduced = useReducedMotion();
 
   return (
-    <section className="relative mx-auto max-w-4xl px-4 py-20 sm:py-28">
+    <section className="relative mx-auto max-w-6xl px-4 py-32 sm:py-40">
       <motion.div
         variants={fadeSlideUp(reduced)}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
-        className="mb-16 text-center"
+        className="mb-20 text-center"
       >
-        <h2 className="font-display text-4xl font-bold sm:text-5xl">Why StadiumOS</h2>
-        <p className="mx-auto mt-3 max-w-xl text-text-secondary">
+        <h2 className="font-display text-5xl font-bold sm:text-6xl">Why StadiumOS</h2>
+        <p className="mx-auto mt-4 max-w-2xl text-lg text-text-secondary">
           Existing systems hand operators raw data. This platform hands them a decision — with the reasoning attached.
         </p>
       </motion.div>
@@ -34,7 +34,7 @@ export function WhyStadiumOS() {
       <div className="relative">
         <div className="absolute left-1/2 top-0 hidden h-full w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-accent-cyan/30 to-transparent sm:block" />
 
-        <div className="space-y-6">
+        <div className="space-y-8">
           {COMPARISON.map((row, i) => (
             <motion.div
               key={row.old}
@@ -43,19 +43,19 @@ export function WhyStadiumOS() {
               whileInView="visible"
               viewport={{ once: true, amount: 0.5 }}
               transition={{ delay: reduced ? 0 : (i % 3) * 0.06 }}
-              className="relative grid grid-cols-1 items-center gap-3 sm:grid-cols-[1fr_auto_1fr] sm:gap-6"
+              className="relative grid grid-cols-1 items-center gap-4 sm:grid-cols-[1fr_auto_1fr] sm:gap-8"
             >
-              <div className="rounded-md border border-border-subtle bg-glass/40 px-4 py-3 text-right">
-                <span className="text-sm text-text-muted line-through decoration-text-muted/40">{row.old}</span>
+              <div className="rounded-lg border border-border-subtle bg-glass/40 px-6 py-4 text-right">
+                <span className="text-base text-text-muted line-through decoration-text-muted/40">{row.old}</span>
               </div>
 
-              <div className="relative z-10 mx-auto flex h-9 w-9 items-center justify-center rounded-full border border-accent-cyan/40 bg-void">
-                <span className="absolute h-9 w-9 animate-pulse-glow rounded-full bg-accent-cyan/10" />
-                <ArrowRight size={14} className="rotate-90 text-accent-cyan sm:rotate-0" />
+              <div className="relative z-10 mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-accent-cyan/40 bg-void shrink-0">
+                <span className="absolute h-12 w-12 animate-pulse-glow rounded-full bg-accent-cyan/10" />
+                <ArrowRight size={18} className="rotate-90 text-accent-cyan sm:rotate-0" />
               </div>
 
-              <div className="gradient-border rounded-md bg-surface px-4 py-3">
-                <span className="text-sm font-medium text-text-primary">{row.new}</span>
+              <div className="gradient-border rounded-lg bg-surface px-6 py-4">
+                <span className="text-base font-medium text-text-primary">{row.new}</span>
               </div>
             </motion.div>
           ))}

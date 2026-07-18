@@ -4,6 +4,7 @@ import { DigitalTwinPreview } from "@/components/landing/digital-twin-preview";
 import { CoreFeatures } from "@/components/landing/core-features";
 import { WhyStadiumOS } from "@/components/landing/why-stadium-os";
 import { ChooseExperience } from "@/components/landing/choose-experience";
+import { InstallPWASection } from "@/components/landing/install-pwa-section";
 import { Footer } from "@/components/landing/footer";
 
 export default function LandingPage() {
@@ -15,6 +16,7 @@ export default function LandingPage() {
       <CoreFeatures />
       <WhyStadiumOS />
       <ChooseExperience />
+      <InstallPWASection />
       <Footer />
     </main>
   );
