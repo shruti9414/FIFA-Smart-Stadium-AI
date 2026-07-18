@@ -37,7 +37,7 @@ export async function POST(_req: Request, { params }: { params: Promise<{ id: st
     return NextResponse.json(result);
   } catch (error) {
     const needsEvacuation = incident.severity === "critical";
-    const recommendedUnit = incident.type === "structural_damage" || incident.type === "fire" ? "Fire Department" : "Police";
+    const recommendedUnit = incident.type === "fire" ? "Fire Department" : "Police";
 
     const fallbackDecision = {
       evacuationNeeded: needsEvacuation,

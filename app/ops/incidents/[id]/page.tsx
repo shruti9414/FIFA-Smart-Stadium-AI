@@ -13,7 +13,7 @@ import { Divider } from "@/components/ui/divider";
 import { LoadingSpinner } from "@/components/ui/loading-spinner";
 import { ErrorState } from "@/components/ui/error-state";
 import { StatusChip } from "@/components/ui/status-chip";
-import { AiReasoningCard } from "@/components/shared/ai-reasoning-card";
+import { AIReasoningCard } from "@/components/shared/ai-reasoning-card";
 import { useSocket } from "@/hooks/useSocket";
 import { fadeSlideUp, staggerChildren } from "@/lib/motion/variants";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
@@ -61,9 +61,9 @@ export default function IncidentDetailPage() {
     if (incidentId) fetchIncident();
   }, [incidentId]);
 
-  useSocket("incident:updated", (payload) => {
+  useSocket("incident:update", (payload) => {
     if (payload.incidentId === parseInt(incidentId)) {
-      setIncident((prev) => prev ? { ...prev, status: payload.status } : null);
+      setIncident((prev) => prev ? { ...prev, status: payload.status as any } : null);
     }
   });
 
@@ -90,7 +90,7 @@ export default function IncidentDetailPage() {
       <div className="flex min-h-screen flex-col">
         <TopBar title="Incident Details" left={<Link href="/ops/incidents"><Button variant="ghost" size="sm"><ArrowLeft size={18} /> Back</Button></Link>} />
         <div className="flex flex-1 items-center justify-center p-4">
-          <ErrorState title="Incident Not Found" message={error || "This incident no longer exists."} />
+          <ErrorState title="Incident Not Found" description={error || "This incident no longer exists."} />
         </div>
       </div>
     );
@@ -126,7 +126,7 @@ export default function IncidentDetailPage() {
                       <Badge className={getSeverityColor(incident.severity)}>
                         {incident.severity.toUpperCase()}
                       </Badge>
-                      <StatusChip status={incident.status} />
+                      <StatusChip tone={incident.status === "resolved" ? "success" : incident.status === "in_progress" ? "warning" : "neutral"} label={incident.status} />
                     </div>
                   </div>
 
@@ -190,31 +190,31 @@ export default function IncidentDetailPage() {
                 AI Analysis & Recommendations
               </h2>
               <div className="space-y-4">
-                <AiReasoningCard
+                <AIReasoningCard
                   title="Incident Summary"
-                  icon={AlertTriangle}
-                  facts={[
+                  rationale="Incident has been classified and tracked through resolution workflow."
+                  affectedFacts={[
                     `Type: ${incident.type}`,
                     `Severity: ${incident.severity}`,
                     `Location: ${incident.location_desc}`,
                     `Duration: ${Math.round((new Date(incident.updated_at).getTime() - new Date(incident.created_at).getTime()) / 60000)} minutes`,
                   ]}
-                  reasoning="Incident has been classified and tracked through resolution workflow."
+                  generatedAt={incident.created_at}
                   confidence={0.95}
                 />
 
                 <Divider />
 
-                <AiReasoningCard
+                <AIReasoningCard
                   title="Recommended Actions"
-                  icon={CheckCircle2}
-                  facts={[
+                  rationale="Actions tailored to incident severity and type."
+                  affectedFacts={[
                     incident.severity === "critical" ? "Deploy emergency response team immediately" : "Monitor situation closely",
                     "Notify relevant departments (medical/security/ops)",
                     "Establish incident perimeter if needed",
                     "Prepare public communication if necessary",
                   ]}
-                  reasoning="Actions tailored to incident severity and type."
+                  generatedAt={new Date().toISOString()}
                   confidence={0.88}
                 />
               </div>

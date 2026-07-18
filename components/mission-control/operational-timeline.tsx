@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { AlertCircle, Zap, Users, CheckCircle2, Clock } from "lucide-react";
-import type { Incident } from "@/lib/types/db";
+import type { IncidentRow } from "@/lib/types/db";
 
 interface TimelineEvent {
   id: string;
@@ -14,7 +14,7 @@ interface TimelineEvent {
 }
 
 interface OperationalTimelineProps {
-  incidents: Incident[];
+  incidents: IncidentRow[];
 }
 
 export function OperationalTimeline({ incidents }: OperationalTimelineProps) {
@@ -33,10 +33,10 @@ export function OperationalTimeline({ incidents }: OperationalTimelineProps) {
         },
       ];
 
-      if (incident.status === "resolved" && incident.resolved_at) {
+      if (incident.status === "resolved") {
         events.push({
           id: `resolution-${incident.id}`,
-          timestamp: incident.resolved_at,
+          timestamp: incident.updated_at,
           type: "resolution",
           title: `Resolved #${incident.id}`,
           detail: `Issue cleared`,

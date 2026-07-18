@@ -160,7 +160,7 @@ export default function MissionControlPage() {
             sections={sections}
             gates={gates}
             crowd={crowd}
-            incidents={incidents}
+            incidents={incidents.map(i => ({ location_id: i.gate_id ?? undefined }))}
           />
 
           {/* Live KPIs Overlay */}

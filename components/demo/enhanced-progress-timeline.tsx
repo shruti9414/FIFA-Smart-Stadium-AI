@@ -15,11 +15,7 @@ import {
 
 interface Step {
   id: string;
-  title: string;
-  icon: React.ReactNode;
   completed: boolean;
-  label: string;
-  shortLabel: string;
 }
 
 interface EnhancedProgressTimelineProps {
@@ -121,7 +117,7 @@ export default function EnhancedProgressTimeline({
                       transition={{
                         duration: isCompleted ? 0.6 : 2,
                         repeat: isCurrent ? Infinity : 0,
-                        repeatType: isCompleted ? "once" : "loop",
+                        ...(isCurrent && { repeatType: "loop" }),
                       }}
                       className={`
                         ${isCompleted ? "text-green-300" : isCurrent ? "text-cyan-300" : "text-slate-400"}

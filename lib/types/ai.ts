@@ -5,7 +5,7 @@
  * consistent everywhere an AI output is rendered.
  */
 export interface AiMeta {
-  source: "gemini";
+  source: "gemini" | "grok";
   cached: boolean;
   generatedAt: string;
   /** 0-100. Omitted for pure Q&A/translation output that isn't a recommendation. */

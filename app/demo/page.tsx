@@ -52,8 +52,7 @@ export default function DemoPage() {
   const [stats, setStats] = useState({
     incidentsProcessed: 1,
     avgResponseTime: 134,
-    crowdSatisfaction: 94,
-    aiAccuracy: 98,
+    crowdSafetyScore: 94,
     aiDecisionsGenerated: 18,
     emergencyTeamsCoordinated: 1,
     sustainabilityImpact: 125,
@@ -204,7 +203,7 @@ export default function DemoPage() {
         setMetrics((p) => ({ ...p, crowdDensity: Math.min(98, p.crowdDensity + 8) }));
         setStats((p) => ({
           ...p,
-          crowdSatisfaction: Math.min(94, p.crowdSatisfaction + 3),
+          crowdSafetyScore: Math.min(94, p.crowdSafetyScore + 3),
         }));
       },
       delay: 4000,
@@ -226,7 +225,6 @@ export default function DemoPage() {
           duration: 3500,
         });
         setMetrics((p) => ({ ...p, systemStatus: "Normal", crowdDensity: 78 }));
-        setStats((p) => ({ ...p, aiAccuracy: 98 }));
       },
       delay: 4000,
       completed: false,
@@ -334,8 +332,7 @@ export default function DemoPage() {
     setStats({
       incidentsProcessed: 1,
       avgResponseTime: 134,
-      crowdSatisfaction: 94,
-      aiAccuracy: 98,
+      crowdSafetyScore: 94,
       aiDecisionsGenerated: 18,
       emergencyTeamsCoordinated: 1,
       sustainabilityImpact: 125,

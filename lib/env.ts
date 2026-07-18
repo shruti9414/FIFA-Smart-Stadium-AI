@@ -17,6 +17,7 @@ const envSchema = z.object({
   DB_NAME: z.string().default("fifa_smart_stadium"),
 
   GROK_API_KEY: z.string().optional(),
+  GEMINI_API_KEY: z.string().optional(),
 
   SOCKET_PORT: z.coerce.number().default(3000),
   NEXT_PUBLIC_SOCKET_URL: z.string().default("http://localhost:3000"),
