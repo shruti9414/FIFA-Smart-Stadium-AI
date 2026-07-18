@@ -1,9 +1,6 @@
 {
   "build": {
-    "builder": "nixpacks",
-    "nixpacks": {
-      "node": "20.18.0"
-    }
+    "builder": "nixpacks"
   },
   "deploy": {
     "startCommand": "npm run start",
