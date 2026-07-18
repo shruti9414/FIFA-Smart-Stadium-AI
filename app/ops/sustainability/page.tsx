@@ -124,7 +124,7 @@ export default function SustainabilityPage() {
                     </div>
                     <span className="font-mono text-2xl font-semibold text-state-success">↓ 42%</span>
                   </div>
-                  <ProgressBar value={100 - 42} />
+                  <ProgressBar value={100 - 42} label="Reduction vs 2025" />
                 </div>
 
                 <Divider />
@@ -143,7 +143,7 @@ export default function SustainabilityPage() {
                     </div>
                     <span className="font-mono text-2xl font-semibold text-accent-cyan">{metrics.renewableEnergy}%</span>
                   </div>
-                  <ProgressBar value={metrics.renewableEnergy} />
+                  <ProgressBar value={metrics.renewableEnergy} label="Of total energy consumption" />
                 </div>
 
                 <Divider />
@@ -162,7 +162,7 @@ export default function SustainabilityPage() {
                     </div>
                     <span className="font-mono text-2xl font-semibold text-accent-blue">125K gal</span>
                   </div>
-                  <ProgressBar value={80} />
+                  <ProgressBar value={80} label="Water saved vs. standard stadium" />
                 </div>
 
                 <Divider />
@@ -181,7 +181,7 @@ export default function SustainabilityPage() {
                     </div>
                     <span className="font-mono text-2xl font-semibold text-accent-emerald">94%</span>
                   </div>
-                  <ProgressBar value={94} />
+                  <ProgressBar value={94} label="Waste diverted from landfills" />
                 </div>
               </div>
             </GlassCard>
@@ -197,45 +197,48 @@ export default function SustainabilityPage() {
               <div className="space-y-4">
                 <AIReasoningCard
                   title="Energy Optimization"
-                  rationale="Real-time energy data shows opportunity for load shifting during peak renewable generation."
+                  icon={Zap}
                   affectedFacts={[
                     "HVAC currently operating at 87% efficiency",
                     "Peak solar generation: 11:00 AM - 2:00 PM (expected 450 kW)",
                     "Recommended: Shift non-critical loads to peak solar hours",
                     "Potential savings: 12-15 MWh per match day",
                   ]}
-                  generatedAt={new Date().toISOString()}
+                  rationale="Real-time energy data shows opportunity for load shifting during peak renewable generation."
                   confidence={0.92}
+                  generatedAt="2026-07-18T12:00:00Z"
                 />
 
                 <Divider />
 
                 <AIReasoningCard
                   title="Water Efficiency"
-                  rationale="Sensor data indicates opportunity for water reduction through maintenance and scheduling."
+                  icon={Droplet}
                   affectedFacts={[
                     "Restroom water usage: 85 gal/hour (above baseline)",
                     "Irrigation system can be optimized for current weather",
                     "Recommendation: Check for leaks in zone C and D",
                     "Potential savings: 8,000 gallons per event",
                   ]}
-                  generatedAt={new Date().toISOString()}
+                  rationale="Sensor data indicates opportunity for water reduction through maintenance and scheduling."
                   confidence={0.87}
+                  generatedAt="2026-07-18T12:00:00Z"
                 />
 
                 <Divider />
 
                 <AIReasoningCard
                   title="Waste Reduction Strategy"
-                  rationale="Food waste analysis shows path to near-zero landfill operations through expanded composting."
+                  icon={Trash2}
                   affectedFacts={[
                     "Current diversion rate: 94% (excellent)",
                     "Food waste is primary remaining stream (6%)",
                     "Recommendation: Expand composting program to vendor stalls",
                     "Target: Achieve 97%+ diversion by next season",
                   ]}
-                  generatedAt={new Date().toISOString()}
+                  rationale="Food waste analysis shows path to near-zero landfill operations through expanded composting."
                   confidence={0.89}
+                  generatedAt="2026-07-18T12:00:00Z"
                 />
               </div>
             </GlassCard>

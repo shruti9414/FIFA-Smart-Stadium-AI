@@ -22,19 +22,19 @@ export function CoreFeatures() {
   const reduced = useReducedMotion();
 
   return (
-    <section className="relative mx-auto max-w-7xl px-4 py-32 sm:py-40">
+    <section className="relative mx-auto max-w-6xl px-4 py-20 sm:py-28">
       <motion.div
         variants={fadeSlideUp(reduced)}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
-        className="mb-16 text-center"
+        className="mb-12 text-center"
       >
-        <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-accent-cyan/25 bg-accent-cyan/5 px-4 py-2 font-mono text-xs uppercase tracking-widest text-accent-cyan">
+        <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-accent-cyan/25 bg-accent-cyan/5 px-3 py-1 font-mono text-[11px] uppercase tracking-widest text-accent-cyan">
           AI Modules
         </div>
-        <h2 className="font-display text-5xl font-bold sm:text-6xl">Where the AI Actually Reasons</h2>
-        <p className="mx-auto mt-4 max-w-3xl text-lg text-text-secondary">
+        <h2 className="font-display text-4xl font-bold sm:text-5xl">Where the AI Actually Reasons</h2>
+        <p className="mx-auto mt-3 max-w-2xl text-text-secondary">
           Every module below fuses multiple live facts into a judgment call — never a single-value lookup dressed up as intelligence.
         </p>
       </motion.div>
@@ -44,25 +44,25 @@ export function CoreFeatures() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.1 }}
-        className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
+        className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4"
       >
         {FEATURES.map((f, i) => (
           <motion.div key={f.title} variants={fadeSlideUp(reduced)} whileHover={reduced ? undefined : { y: -4 }} className="group">
-            <GlassCard padding="lg" className="relative h-full overflow-hidden transition-[border-color,box-shadow] duration-300 group-hover:border-accent-cyan/40 group-hover:shadow-[var(--shadow-glow-cyan)]">
+            <GlassCard padding="md" className="relative h-full overflow-hidden transition-[border-color,box-shadow] duration-300 group-hover:border-accent-cyan/40 group-hover:shadow-[var(--shadow-glow-cyan)]">
               <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent-cyan/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              <div className="mb-5 flex items-center justify-between">
+              <div className="mb-3 flex items-center justify-between">
                 <motion.div
-                  className="flex h-14 w-14 items-center justify-center rounded-sm bg-accent-cyan/10"
+                  className="flex h-10 w-10 items-center justify-center rounded-sm bg-accent-cyan/10"
                   whileHover={reduced ? undefined : { rotate: 10, scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 300, damping: 15 }}
                 >
-                  <f.icon size={28} className="text-accent-cyan" strokeWidth={1.75} />
+                  <f.icon size={20} className="text-accent-cyan" strokeWidth={1.75} />
                 </motion.div>
                 <AIBadge />
               </div>
-              <div className="mb-2 font-mono text-xs text-text-muted uppercase tracking-wide">MODULE {String(i + 1).padStart(2, "0")}</div>
-              <h3 className="font-display text-lg font-semibold text-text-primary">{f.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-text-secondary">{f.description}</p>
+              <div className="mb-1 font-mono text-[10px] text-text-muted">MODULE {String(i + 1).padStart(2, "0")}</div>
+              <h3 className="font-display text-sm font-semibold text-text-primary">{f.title}</h3>
+              <p className="mt-1.5 text-xs leading-relaxed text-text-secondary">{f.description}</p>
             </GlassCard>
           </motion.div>
         ))}

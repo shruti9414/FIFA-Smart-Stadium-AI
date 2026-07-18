@@ -2,15 +2,13 @@ import { NextResponse } from "next/server";
 import { getPool } from "@/lib/db/pool";
 import type { IncidentRow } from "@/lib/types/db";
 
-export async function GET(req: Request, { params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params;
+export async function GET(req: Request, { params }: { params: { id: string } }) {
   try {
     const pool = getPool();
-    const [rows] = await pool.query(
+    const [[incident]] = await pool.query<IncidentRow[]>(
       "SELECT * FROM incidents WHERE id = ? LIMIT 1",
-      [parseInt(id)]
+      [parseInt(params.id)]
     );
-    const incident = (rows as IncidentRow[])[0];
 
     if (!incident) {
       return NextResponse.json({ error: "Incident not found" }, { status: 404 });
@@ -23,8 +21,7 @@ export async function GET(req: Request, { params }: { params: Promise<{ id: stri
   }
 }
 
-export async function PATCH(req: Request, { params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params;
+export async function PATCH(req: Request, { params }: { params: { id: string } }) {
   try {
     const body = await req.json();
     const { status, description } = body;
@@ -33,7 +30,7 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ id: st
     await pool.query("UPDATE incidents SET status = ?, description = ?, updated_at = NOW() WHERE id = ?", [
       status || undefined,
       description || undefined,
-      parseInt(id),
+      parseInt(params.id),
     ]);
 
     return NextResponse.json({ success: true });

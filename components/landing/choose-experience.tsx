@@ -31,8 +31,8 @@ export function ChooseExperience() {
   const reduced = useReducedMotion();
 
   return (
-    <section className="relative mx-auto max-w-6xl px-4 py-32 sm:py-44">
-      <div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[800px] w-[1200px] -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(ellipse,rgba(34,211,238,0.08),transparent_65%)]" />
+    <section className="relative mx-auto max-w-5xl px-4 py-24 sm:py-36">
+      <div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[600px] w-[900px] -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(ellipse,rgba(34,211,238,0.08),transparent_65%)]" />
 
       <motion.div
         variants={fadeSlideUp(reduced)}
@@ -56,13 +56,13 @@ export function ChooseExperience() {
         viewport={{ once: true, amount: 0.2 }}
         className="grid grid-cols-1 gap-6 md:grid-cols-3"
       >
-        <motion.div variants={fadeSlideUp(reduced)} whileTap={reduced ? undefined : { scale: 0.98 }}>
+        <motion.div variants={fadeSlideUp(reduced)}>
           <Link href={ROUTES.fan} className="group block">
             <TiltCard className="relative">
               <GlassCard
                 elevation="L2"
                 padding="lg"
-                className="relative h-full min-h-[260px] overflow-hidden transition-[border-color,box-shadow] duration-300 group-hover:border-accent-cyan/40 group-hover:shadow-[var(--shadow-glow-cyan)] cursor-pointer"
+                className="relative h-full min-h-[260px] overflow-hidden transition-[border-color,box-shadow] duration-300 group-hover:border-accent-cyan/40 group-hover:shadow-[var(--shadow-glow-cyan)]"
               >
                 <CornerBrackets />
                 <div className="flex h-full flex-col justify-between">
@@ -85,13 +85,13 @@ export function ChooseExperience() {
           </Link>
         </motion.div>
 
-        <motion.div variants={fadeSlideUp(reduced)} whileTap={reduced ? undefined : { scale: 0.98 }}>
+        <motion.div variants={fadeSlideUp(reduced)}>
           <Link href={ROUTES.ops} className="group block">
             <TiltCard className="relative">
               <GlassCard
                 elevation="L2"
                 padding="lg"
-                className="relative h-full min-h-[260px] overflow-hidden transition-[border-color,box-shadow] duration-300 group-hover:border-accent-emerald/40 group-hover:shadow-[var(--shadow-glow-emerald)] cursor-pointer"
+                className="relative h-full min-h-[260px] overflow-hidden transition-[border-color,box-shadow] duration-300 group-hover:border-accent-emerald/40 group-hover:shadow-[var(--shadow-glow-emerald)]"
               >
                 <CornerBrackets />
                 <div className="flex h-full flex-col justify-between">
@@ -114,13 +114,13 @@ export function ChooseExperience() {
           </Link>
         </motion.div>
 
-        <motion.div variants={fadeSlideUp(reduced)} whileTap={reduced ? undefined : { scale: 0.98 }}>
+        <motion.div variants={fadeSlideUp(reduced)}>
           <Link href="/demo" className="group block">
             <TiltCard className="relative">
               <GlassCard
                 elevation="L2"
                 padding="lg"
-                className="relative h-full min-h-[260px] overflow-hidden transition-[border-color,box-shadow] duration-300 group-hover:border-accent-cyan/40 group-hover:shadow-[var(--shadow-glow-cyan)] cursor-pointer"
+                className="relative h-full min-h-[260px] overflow-hidden transition-[border-color,box-shadow] duration-300 group-hover:border-accent-cyan/40 group-hover:shadow-[var(--shadow-glow-cyan)]"
               >
                 <CornerBrackets />
                 <div className="flex h-full flex-col justify-between">

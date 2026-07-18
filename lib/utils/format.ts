@@ -25,12 +25,6 @@ export function formatClock(iso: string): string {
   });
 }
 
-/** Confidence/percentage display, e.g. 0.873 or 87 -> "87%". */
-export function formatPercent(value: number): string {
-  const pct = value <= 1 ? value * 100 : value;
-  return `${Math.round(pct)}%`;
-}
-
 /** Full date display, e.g. "Jul 18, 2026" — used by incident timestamps. */
 export function formatDate(iso: string): string {
   return new Date(iso).toLocaleDateString("en-US", {
@@ -38,4 +32,10 @@ export function formatDate(iso: string): string {
     month: "short",
     day: "numeric",
   });
+}
+
+/** Confidence/percentage display, e.g. 0.873 or 87 -> "87%". */
+export function formatPercent(value: number): string {
+  const pct = value <= 1 ? value * 100 : value;
+  return `${Math.round(pct)}%`;
 }

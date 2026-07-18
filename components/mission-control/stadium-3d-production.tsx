@@ -19,9 +19,8 @@ function StadiumGeometry({ sections, gates, crowd, incidents }: StadiumProps) {
   useEffect(() => {
     if (!groupRef.current) return;
 
-    const group = groupRef.current;
     // Clear existing
-    group.clear();
+    groupRef.current.clear();
 
     const innerRadius = 40;
     const outerRadius = 100;
@@ -36,7 +35,7 @@ function StadiumGeometry({ sections, gates, crowd, incidents }: StadiumProps) {
     const field = new THREE.Mesh(fieldGeo, fieldMat);
     field.position.y = 0.5;
     field.castShadow = true;
-    group.add(field);
+    groupRef.current.add(field);
 
     // Stadium seating rings
     sections.forEach((section, idx) => {
@@ -77,7 +76,7 @@ function StadiumGeometry({ sections, gates, crowd, incidents }: StadiumProps) {
       const mesh = new THREE.Mesh(geometry, material);
       mesh.castShadow = true;
       mesh.receiveShadow = true;
-      group.add(mesh);
+      groupRef.current.add(mesh);
     });
 
     // Gates around perimeter
@@ -112,7 +111,7 @@ function StadiumGeometry({ sections, gates, crowd, incidents }: StadiumProps) {
       );
       gateMesh.castShadow = true;
       gateMesh.receiveShadow = true;
-      group.add(gateMesh);
+      groupRef.current.add(gateMesh);
     });
 
     // Parking areas (outer rings)
@@ -133,7 +132,7 @@ function StadiumGeometry({ sections, gates, crowd, incidents }: StadiumProps) {
       );
       parkMesh.castShadow = true;
       parkMesh.receiveShadow = true;
-      group.add(parkMesh);
+      groupRef.current.add(parkMesh);
     });
   }, [sections, gates, crowd, incidents]);
 
