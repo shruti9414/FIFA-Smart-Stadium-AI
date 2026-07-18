@@ -43,7 +43,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${fontVariables} h-full`} suppressHydrationWarning>
-      <body className="flex min-h-full flex-col bg-void font-sans text-text-primary antialiased">
+      <body className="flex min-h-full flex-col bg-void font-sans text-text-primary antialiased" suppressHydrationWarning>
         <Providers>
           {children}
           <InstallPrompt />
