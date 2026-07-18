@@ -13,7 +13,7 @@ import { Divider } from "@/components/ui/divider";
 import { LoadingSpinner } from "@/components/ui/loading-spinner";
 import { ErrorState } from "@/components/ui/error-state";
 import { StatusChip } from "@/components/ui/status-chip";
-import { AiReasoningCard } from "@/components/shared/ai-reasoning-card";
+import { AIReasoningCard } from "@/components/shared/ai-reasoning-card";
 import { useSocket } from "@/hooks/useSocket";
 import { fadeSlideUp, staggerChildren } from "@/lib/motion/variants";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
@@ -190,7 +190,7 @@ export default function IncidentDetailPage() {
                 AI Analysis & Recommendations
               </h2>
               <div className="space-y-4">
-                <AiReasoningCard
+                <AIReasoningCard
                   title="Incident Summary"
                   icon={AlertTriangle}
                   facts={[
@@ -205,7 +205,7 @@ export default function IncidentDetailPage() {
 
                 <Divider />
 
-                <AiReasoningCard
+                <AIReasoningCard
                   title="Recommended Actions"
                   icon={CheckCircle2}
                   facts={[

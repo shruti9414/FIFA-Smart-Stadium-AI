@@ -8,7 +8,7 @@ import { KPICard } from "@/components/shared/kpi-card";
 import { ProgressBar } from "@/components/ui/progress-bar";
 import { Badge } from "@/components/ui/badge";
 import { Divider } from "@/components/ui/divider";
-import { AiReasoningCard } from "@/components/shared/ai-reasoning-card";
+import { AIReasoningCard } from "@/components/shared/ai-reasoning-card";
 import { fadeSlideUp, staggerChildren } from "@/lib/motion/variants";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
@@ -195,47 +195,50 @@ export default function SustainabilityPage() {
               </h2>
 
               <div className="space-y-4">
-                <AiReasoningCard
+                <AIReasoningCard
                   title="Energy Optimization"
                   icon={Zap}
-                  facts={[
+                  affectedFacts={[
                     "HVAC currently operating at 87% efficiency",
                     "Peak solar generation: 11:00 AM - 2:00 PM (expected 450 kW)",
                     "Recommended: Shift non-critical loads to peak solar hours",
                     "Potential savings: 12-15 MWh per match day",
                   ]}
-                  reasoning="Real-time energy data shows opportunity for load shifting during peak renewable generation."
+                  rationale="Real-time energy data shows opportunity for load shifting during peak renewable generation."
                   confidence={0.92}
+                  generatedAt="2026-07-18T12:00:00Z"
                 />
 
                 <Divider />
 
-                <AiReasoningCard
+                <AIReasoningCard
                   title="Water Efficiency"
                   icon={Droplet}
-                  facts={[
+                  affectedFacts={[
                     "Restroom water usage: 85 gal/hour (above baseline)",
                     "Irrigation system can be optimized for current weather",
                     "Recommendation: Check for leaks in zone C and D",
                     "Potential savings: 8,000 gallons per event",
                   ]}
-                  reasoning="Sensor data indicates opportunity for water reduction through maintenance and scheduling."
+                  rationale="Sensor data indicates opportunity for water reduction through maintenance and scheduling."
                   confidence={0.87}
+                  generatedAt="2026-07-18T12:00:00Z"
                 />
 
                 <Divider />
 
-                <AiReasoningCard
+                <AIReasoningCard
                   title="Waste Reduction Strategy"
                   icon={Trash2}
-                  facts={[
+                  affectedFacts={[
                     "Current diversion rate: 94% (excellent)",
                     "Food waste is primary remaining stream (6%)",
                     "Recommendation: Expand composting program to vendor stalls",
                     "Target: Achieve 97%+ diversion by next season",
                   ]}
-                  reasoning="Food waste analysis shows path to near-zero landfill operations through expanded composting."
+                  rationale="Food waste analysis shows path to near-zero landfill operations through expanded composting."
                   confidence={0.89}
+                  generatedAt="2026-07-18T12:00:00Z"
                 />
               </div>
             </GlassCard>
