@@ -21,8 +21,9 @@ app.prepare().then(() => {
   initSocketServer(httpServer);
 
   const { SOCKET_PORT } = getEnv();
-  httpServer.listen(SOCKET_PORT, () => {
-    console.log(`> FIFA Smart Stadium AI ready on http://localhost:${SOCKET_PORT} (${dev ? "dev" : "prod"})`);
+  const port = Number(process.env.PORT) || SOCKET_PORT;
+  httpServer.listen(port, "0.0.0.0", () => {
+    console.log(`> FIFA Smart Stadium AI ready on http://localhost:${port} (${dev ? "dev" : "prod"})`);
   });
 
   startSimEngine().catch((err) => {
