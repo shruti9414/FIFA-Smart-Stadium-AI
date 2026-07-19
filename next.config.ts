@@ -1,8 +1,5 @@
 import type { NextConfig } from "next";
 import withPWAInit from "@ducanh2912/next-pwa";
-import { resolve } from "path";
-
-const ROOT = resolve(process.cwd());
 
 const withPWA = withPWAInit({
   dest: "public",
@@ -46,24 +43,8 @@ const withPWA = withPWAInit({
   },
 });
 
-// Build the base config THEN let withPWA wrap it, so the PWA plugin has
-// already applied its webpack mutations before we re-anchor the @/ alias.
-const baseConfig: NextConfig = {
+const nextConfig: NextConfig = {
   typescript: { ignoreBuildErrors: true },
 };
 
-const pwaConfig = withPWA(baseConfig);
-
-// Patch AFTER withPWA so no subsequent pass can clobber @/ again.
-const _inner = pwaConfig.webpack;
-pwaConfig.webpack = function (config, options) {
-  const result = _inner ? _inner(config, options) : config;
-  if (!result.resolve) result.resolve = {};
-  if (!result.resolve.alias) result.resolve.alias = {};
-  // @ducanh2912/next-pwa v10 rewrites resolve.alias in its own webpack pass;
-  // re-anchor @/ to the project root so every compilation phase finds it.
-  (result.resolve.alias as Record<string, string>)["@"] = ROOT;
-  return result;
-};
-
-export default pwaConfig;
+export default withPWA(nextConfig);
