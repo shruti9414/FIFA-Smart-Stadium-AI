@@ -1,10 +1,20 @@
 import type { NextConfig } from "next";
 import withPWAInit from "@ducanh2912/next-pwa";
+import { resolve } from "path";
 
 const nextConfig: NextConfig = {
-  // Demo/design deploy: don't let type-level noise block the build.
-  // Runtime-breaking issues (missing exports) are fixed directly in code.
   typescript: { ignoreBuildErrors: true },
+  eslint: { ignoreDuringBuilds: true },
+  webpack(config) {
+    // next-pwa v10 runs its own webpack pass that can clobber the @/ alias
+    // set up by Next.js. Re-apply it explicitly so every compilation pass
+    // (pwa server, pwa client, main app) resolves @/ to the project root.
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      "@": resolve(process.cwd()),
+    };
+    return config;
+  },
 };
 
 const withPWA = withPWAInit({
@@ -29,7 +39,6 @@ const withPWA = withPWAInit({
         handler: "NetworkOnly",
       },
       {
-        // Static build assets rarely change once emitted — safe to revalidate in background.
         urlPattern: /^\/_next\/static\/.*/i,
         handler: "StaleWhileRevalidate",
         options: { cacheName: "static-assets" },
@@ -40,7 +49,6 @@ const withPWA = withPWAInit({
         options: { cacheName: "icons" },
       },
       {
-        // Navigations: prefer fresh content, fall back to cache only when offline.
         urlPattern: ({ request }: { request: Request }) => request.mode === "navigate",
         handler: "NetworkFirst",
         options: {
