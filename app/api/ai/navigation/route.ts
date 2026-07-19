@@ -1,11 +1,11 @@
-import { NextResponse } from "next/server";
+﻿import { NextResponse } from "next/server";
 import { getNavigationGuidance } from "@/lib/ai/navigation";
-import { isGrokConfigured } from "@/lib/ai/grok";
+import { isGeminiConfigured } from "@/lib/ai/gemini";
 import { getAllGates } from "@/lib/db/gates";
 import { getLatestCrowdReadings } from "@/lib/db/crowd";
 
 export async function POST(req: Request) {
-  if (!isGrokConfigured()) {
+  if (!isGeminiConfigured()) {
     return NextResponse.json({ error: "AI navigation is temporarily unavailable." }, { status: 503 });
   }
 

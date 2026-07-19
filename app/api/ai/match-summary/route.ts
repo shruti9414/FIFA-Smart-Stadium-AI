@@ -1,6 +1,6 @@
-import { NextResponse } from "next/server";
+﻿import { NextResponse } from "next/server";
 import { generateMatchSummary } from "@/lib/ai/matchSummary";
-import { isGrokConfigured } from "@/lib/ai/grok";
+import { isGeminiConfigured } from "@/lib/ai/gemini";
 import { getLiveMatch, getMatchEvents, getCachedMatchSummary, saveMatchSummary } from "@/lib/db/matches";
 
 export async function GET() {
@@ -17,7 +17,7 @@ export async function GET() {
     });
   }
 
-  if (!isGrokConfigured()) {
+  if (!isGeminiConfigured()) {
     return NextResponse.json({ error: "AI match summary is temporarily unavailable." }, { status: 503 });
   }
 

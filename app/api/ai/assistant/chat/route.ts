@@ -1,15 +1,15 @@
-import { NextResponse } from "next/server";
+﻿import { NextResponse } from "next/server";
 import { askAssistant } from "@/lib/ai/assistant";
-import { isGrokConfigured } from "@/lib/ai/grok";
+import { isGeminiConfigured } from "@/lib/ai/gemini";
 import { getOrCreateSession, getSessionHistory, appendChatMessage } from "@/lib/db/chatHistory";
 import { getAllGates } from "@/lib/db/gates";
 import { getActiveIncidents } from "@/lib/db/incidents";
 import { getLiveMatch } from "@/lib/db/matches";
 
 export async function POST(req: Request) {
-  if (!isGrokConfigured()) {
+  if (!isGeminiConfigured()) {
     return NextResponse.json(
-      { error: "AI assistant is temporarily unavailable — GROK_API_KEY is not configured." },
+      { error: "AI assistant is temporarily unavailable â€” GROK_API_KEY is not configured." },
       { status: 503 }
     );
   }

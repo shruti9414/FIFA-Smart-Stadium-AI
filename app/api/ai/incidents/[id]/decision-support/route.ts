@@ -1,13 +1,13 @@
 import { NextResponse } from "next/server";
 import { getEmergencyDecisionSupport } from "@/lib/ai/emergencyDecision";
-import { isGrokConfigured } from "@/lib/ai/grok";
+import { isGeminiConfigured } from "@/lib/ai/gemini";
 import { getIncidentById, saveAiNote } from "@/lib/db/incidents";
 import { getAllGates } from "@/lib/db/gates";
 import { getLatestCrowdReadings } from "@/lib/db/crowd";
 import { getAvailableStaff } from "@/lib/db/staff";
 
 export async function POST(_req: Request, { params }: { params: Promise<{ id: string }> }) {
-  if (!isGrokConfigured()) {
+  if (!isGeminiConfigured()) {
     return NextResponse.json({ error: "AI decision support is temporarily unavailable." }, { status: 503 });
   }
 

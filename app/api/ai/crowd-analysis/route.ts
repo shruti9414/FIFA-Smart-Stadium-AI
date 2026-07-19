@@ -1,12 +1,12 @@
-import { NextResponse } from "next/server";
+﻿import { NextResponse } from "next/server";
 import { analyzeCrowd } from "@/lib/ai/crowdAnalysis";
-import { isGrokConfigured } from "@/lib/ai/grok";
+import { isGeminiConfigured } from "@/lib/ai/gemini";
 import { getCrowdHistory } from "@/lib/db/crowd";
 import { getAllGates } from "@/lib/db/gates";
 import { getAllSections } from "@/lib/db/sections";
 
 export async function POST(req: Request) {
-  if (!isGrokConfigured()) {
+  if (!isGeminiConfigured()) {
     return NextResponse.json({ error: "AI crowd analysis is temporarily unavailable." }, { status: 503 });
   }
 

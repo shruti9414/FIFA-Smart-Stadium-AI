@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { summarizeIncident } from "@/lib/ai/incidentSummary";
-import { isGrokConfigured } from "@/lib/ai/grok";
+import { isGeminiConfigured } from "@/lib/ai/gemini";
 import { getIncidentById, getLatestAiNote, saveAiNote } from "@/lib/db/incidents";
 
 export async function GET(_req: Request, { params }: { params: Promise<{ id: string }> }) {
@@ -17,7 +17,7 @@ export async function GET(_req: Request, { params }: { params: Promise<{ id: str
     });
   }
 
-  if (!isGrokConfigured()) {
+  if (!isGeminiConfigured()) {
     return NextResponse.json({ error: "AI incident summary is temporarily unavailable." }, { status: 503 });
   }
 

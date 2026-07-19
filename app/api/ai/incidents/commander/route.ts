@@ -1,13 +1,13 @@
-import { NextResponse } from "next/server";
+﻿import { NextResponse } from "next/server";
 import { getIncidentCommanderPlan } from "@/lib/ai/incidentCommander";
-import { isGrokConfigured } from "@/lib/ai/grok";
+import { isGeminiConfigured } from "@/lib/ai/gemini";
 import { getActiveIncidents, saveAiNote } from "@/lib/db/incidents";
 import { getAllGates } from "@/lib/db/gates";
 import { getLatestCrowdReadings } from "@/lib/db/crowd";
 import { getAvailableStaff } from "@/lib/db/staff";
 
 export async function POST() {
-  if (!isGrokConfigured()) {
+  if (!isGeminiConfigured()) {
     return NextResponse.json({ error: "AI Incident Commander is temporarily unavailable." }, { status: 503 });
   }
 
@@ -67,7 +67,7 @@ export async function POST() {
           {
             priority: 3,
             action: "Monitor remaining incidents for escalation",
-            rationale: `Non-critical incidents may compound — watch for severity changes`,
+            rationale: `Non-critical incidents may compound â€” watch for severity changes`,
           },
         ],
         confidence: 0.65,

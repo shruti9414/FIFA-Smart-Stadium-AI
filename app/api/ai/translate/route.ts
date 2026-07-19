@@ -1,9 +1,9 @@
-import { NextResponse } from "next/server";
+﻿import { NextResponse } from "next/server";
 import { translate } from "@/lib/ai/multilingual";
-import { isGrokConfigured } from "@/lib/ai/grok";
+import { isGeminiConfigured } from "@/lib/ai/gemini";
 
 export async function POST(req: Request) {
-  if (!isGrokConfigured()) {
+  if (!isGeminiConfigured()) {
     return NextResponse.json({ error: "Translation is temporarily unavailable." }, { status: 503 });
   }
   const { text, targetLanguage } = await req.json();

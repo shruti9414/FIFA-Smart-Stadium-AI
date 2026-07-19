@@ -1,6 +1,6 @@
-import { NextResponse } from "next/server";
+﻿import { NextResponse } from "next/server";
 import { getOpsRecommendations } from "@/lib/ai/opsRecommendations";
-import { isGrokConfigured } from "@/lib/ai/grok";
+import { isGeminiConfigured } from "@/lib/ai/gemini";
 import { getAllGates } from "@/lib/db/gates";
 import { getLatestCrowdReadings } from "@/lib/db/crowd";
 import { getAllParking } from "@/lib/db/parking";
@@ -9,7 +9,7 @@ import { getActiveIncidents } from "@/lib/db/incidents";
 import { getAllStaff } from "@/lib/db/staff";
 
 export async function GET() {
-  if (!isGrokConfigured()) {
+  if (!isGeminiConfigured()) {
     return NextResponse.json({ error: "AI recommendations are temporarily unavailable." }, { status: 503 });
   }
 
