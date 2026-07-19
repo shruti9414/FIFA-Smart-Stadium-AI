@@ -15,7 +15,9 @@ process.on("unhandledRejection", (reason) => {
 });
 
 const dev = process.env.NODE_ENV !== "production";
-const app = next({ dev });
+// webpack: true prevents Next.js 16 from auto-enabling Turbopack (TURBOPACK=auto),
+// which loads a native binary that segfaults in Railway's container — same fix as build.
+const app = next({ dev, webpack: !dev });
 const handler = app.getRequestHandler();
 
 const { SOCKET_PORT } = getEnv();
