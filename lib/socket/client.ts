@@ -12,7 +12,7 @@ export function getSocket(): TypedSocket {
   }
   if (socket) return socket;
 
-  const url = process.env.NEXT_PUBLIC_SOCKET_URL ?? "http://localhost:3000";
-  socket = io(url, { autoConnect: true, reconnection: true });
+  const url = process.env.NEXT_PUBLIC_SOCKET_URL || undefined;
+  socket = io(url!, { autoConnect: true, reconnection: true });
   return socket;
 }
