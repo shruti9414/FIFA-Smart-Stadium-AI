@@ -3,6 +3,3 @@ cmds = ["npm ci --include=dev"]
 
 [phases.build]
 cmds = ["npm run build"]
-
-[variables]
-NIXPACKS_NODE_VERSION = "20"
