@@ -50,7 +50,6 @@ const withPWA = withPWAInit({
 // already applied its webpack mutations before we re-anchor the @/ alias.
 const baseConfig: NextConfig = {
   typescript: { ignoreBuildErrors: true },
-  eslint: { ignoreDuringBuilds: true },
 };
 
 const pwaConfig = withPWA(baseConfig);
