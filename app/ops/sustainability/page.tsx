@@ -124,7 +124,7 @@ export default function SustainabilityPage() {
                     </div>
                     <span className="font-mono text-2xl font-semibold text-state-success">↓ 42%</span>
                   </div>
-                  <ProgressBar value={100 - 42} label="Reduction vs 2025" />
+                  <ProgressBar value={100 - 42} />
                 </div>
 
                 <Divider />
@@ -143,7 +143,7 @@ export default function SustainabilityPage() {
                     </div>
                     <span className="font-mono text-2xl font-semibold text-accent-cyan">{metrics.renewableEnergy}%</span>
                   </div>
-                  <ProgressBar value={metrics.renewableEnergy} label="Of total energy consumption" />
+                  <ProgressBar value={metrics.renewableEnergy} />
                 </div>
 
                 <Divider />
@@ -162,7 +162,7 @@ export default function SustainabilityPage() {
                     </div>
                     <span className="font-mono text-2xl font-semibold text-accent-blue">125K gal</span>
                   </div>
-                  <ProgressBar value={80} label="Water saved vs. standard stadium" />
+                  <ProgressBar value={80} />
                 </div>
 
                 <Divider />
@@ -181,7 +181,7 @@ export default function SustainabilityPage() {
                     </div>
                     <span className="font-mono text-2xl font-semibold text-accent-emerald">94%</span>
                   </div>
-                  <ProgressBar value={94} label="Waste diverted from landfills" />
+                  <ProgressBar value={94} />
                 </div>
               </div>
             </GlassCard>
@@ -197,7 +197,6 @@ export default function SustainabilityPage() {
               <div className="space-y-4">
                 <AIReasoningCard
                   title="Energy Optimization"
-                  icon={Zap}
                   affectedFacts={[
                     "HVAC currently operating at 87% efficiency",
                     "Peak solar generation: 11:00 AM - 2:00 PM (expected 450 kW)",
@@ -213,7 +212,6 @@ export default function SustainabilityPage() {
 
                 <AIReasoningCard
                   title="Water Efficiency"
-                  icon={Droplet}
                   affectedFacts={[
                     "Restroom water usage: 85 gal/hour (above baseline)",
                     "Irrigation system can be optimized for current weather",
@@ -229,7 +227,6 @@ export default function SustainabilityPage() {
 
                 <AIReasoningCard
                   title="Waste Reduction Strategy"
-                  icon={Trash2}
                   affectedFacts={[
                     "Current diversion rate: 94% (excellent)",
                     "Food waste is primary remaining stream (6%)",

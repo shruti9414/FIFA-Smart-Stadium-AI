@@ -1,11 +1,12 @@
 import { NextResponse } from "next/server";
 import { getPool } from "@/lib/db/pool";
+import type { RowDataPacket } from "mysql2";
 import type { IncidentRow } from "@/lib/types/db";
 
 export async function GET(req: Request, { params }: { params: { id: string } }) {
   try {
     const pool = getPool();
-    const [[incident]] = await pool.query<IncidentRow[]>(
+    const [[incident]] = await pool.query<(IncidentRow & RowDataPacket)[]>(
       "SELECT * FROM incidents WHERE id = ? LIMIT 1",
       [parseInt(params.id)]
     );

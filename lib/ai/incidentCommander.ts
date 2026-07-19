@@ -1,4 +1,4 @@
-import { generateJSON, MODELS } from "@/lib/ai/grok";
+import { generateJSON, MODELS } from "@/lib/ai/gemini";
 import type { AiResult } from "@/lib/types/ai";
 
 /**
@@ -59,6 +59,6 @@ ${input.availableStaff.map((s) => s.role).join(", ") || "none available"}`;
 
   return {
     data,
-    meta: { source: "grok", cached: false, generatedAt: new Date().toISOString(), confidence: data.confidence },
+    meta: { source: "gemini", cached: false, generatedAt: new Date().toISOString(), confidence: data.confidence },
   };
 }

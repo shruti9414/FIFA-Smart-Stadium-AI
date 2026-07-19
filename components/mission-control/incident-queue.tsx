@@ -3,7 +3,7 @@
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { AlertCircle, Search, Filter, Clock, MapPin, Users } from "lucide-react";
-import type { Incident } from "@/lib/types/db";
+import type { IncidentRow as Incident } from "@/lib/types/db";
 
 interface IncidentQueueProps {
   incidents: Incident[];
@@ -29,7 +29,7 @@ export function IncidentQueue({
           const searchLower = searchTerm.toLowerCase();
           return (
             inc.type.toLowerCase().includes(searchLower) ||
-            inc.location_desc.toLowerCase().includes(searchLower)
+            (inc.location_desc ?? "").toLowerCase().includes(searchLower)
           );
         }
         return true;
@@ -169,13 +169,7 @@ export function IncidentQueue({
                     <span>{new Date(incident.created_at).toLocaleTimeString()}</span>
                   </div>
 
-                  {/* Assigned Teams (if available) */}
-                  {incident.assigned_teams && incident.assigned_teams.length > 0 && (
-                    <div className="flex items-center gap-2 mt-2 pt-2 border-t border-current/20">
-                      <Users size={12} className="opacity-60" />
-                      <span className="text-xs">{incident.assigned_teams.join(", ")}</span>
-                    </div>
-                  )}
+                  {/* Assigned Teams — field removed in current schema */}
                 </motion.div>
               ))}
             </div>

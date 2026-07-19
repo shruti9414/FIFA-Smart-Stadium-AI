@@ -197,16 +197,14 @@ function StadiumMesh({
             <bufferGeometry>
               <bufferAttribute
                 attach="attributes-position"
-                count={2}
-                array={new Float32Array([
+                args={[new Float32Array([
                   Math.cos(angle) * 40,
                   0.1,
                   Math.sin(angle) * 40,
                   Math.cos(angle) * 80,
                   0.1,
                   Math.sin(angle) * 80,
-                ])}
-                itemSize={3}
+                ]), 3]}
               />
             </bufferGeometry>
             <lineBasicMaterial color={0x06b6d4} linewidth={2} />

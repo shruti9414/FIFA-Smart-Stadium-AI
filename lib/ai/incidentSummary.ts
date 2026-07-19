@@ -1,4 +1,4 @@
-import { generateText, MODELS } from "@/lib/ai/grok";
+import { generateText, MODELS } from "@/lib/ai/gemini";
 import type { AiResult } from "@/lib/types/ai";
 
 /** Incident Summarization — condenses an incident's raw trail into a shift-report paragraph. */
@@ -28,6 +28,6 @@ Description: ${input.description}`;
 
   return {
     data: { summary: summary.trim() },
-    meta: { source: "grok", cached: false, generatedAt: new Date().toISOString() },
+    meta: { source: "gemini", cached: false, generatedAt: new Date().toISOString() },
   };
 }

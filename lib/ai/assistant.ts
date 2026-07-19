@@ -1,4 +1,4 @@
-import { generateText, MODELS } from "@/lib/ai/grok";
+import { generateText, MODELS } from "@/lib/ai/gemini";
 import type { AiResult } from "@/lib/types/ai";
 
 const LANGUAGE_MAP: Record<string, string> = {

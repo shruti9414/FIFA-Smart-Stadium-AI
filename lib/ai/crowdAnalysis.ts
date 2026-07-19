@@ -1,4 +1,4 @@
-import { generateJSON, MODELS } from "@/lib/ai/grok";
+import { generateJSON, MODELS } from "@/lib/ai/gemini";
 import type { AiResult } from "@/lib/types/ai";
 
 /** Crowd Analysis — trend + risk projection over a density time window, not a single-point lookup. */
@@ -41,6 +41,6 @@ ${input.window.map((w) => `${w.recordedAt}: ${w.densityPct}%`).join("\n")}`;
 
   return {
     data,
-    meta: { source: "grok", cached: false, generatedAt: new Date().toISOString(), confidence: data.confidence },
+    meta: { source: "gemini", cached: false, generatedAt: new Date().toISOString(), confidence: data.confidence },
   };
 }

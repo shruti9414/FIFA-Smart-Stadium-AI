@@ -1,4 +1,4 @@
-import { generateText, MODELS } from "@/lib/ai/grok";
+import { generateText, MODELS } from "@/lib/ai/gemini";
 import type { AiResult } from "@/lib/types/ai";
 
 /** Match Summary Generation — turns the raw event log into broadcast-style prose. Caller handles caching against based_on_event_count. */
@@ -24,6 +24,6 @@ ${input.events.map((e) => `${e.minute}' ${e.eventType}${e.team ? ` (${e.team}${e
 
   return {
     data: { summary: summary.trim() },
-    meta: { source: "grok", cached: false, generatedAt: new Date().toISOString() },
+    meta: { source: "gemini", cached: false, generatedAt: new Date().toISOString() },
   };
 }

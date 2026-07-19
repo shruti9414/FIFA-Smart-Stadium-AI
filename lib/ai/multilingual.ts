@@ -1,4 +1,4 @@
-import { generateText, MODELS } from "@/lib/ai/grok";
+import { generateText, MODELS } from "@/lib/ai/gemini";
 import type { AiResult } from "@/lib/types/ai";
 
 /** Multilingual Assistance — thin transformation wrapper, kept separate so assistant.ts stays single-responsibility. */
@@ -13,6 +13,6 @@ export async function translate(input: TranslateFacts): Promise<AiResult<{ text:
 
   return {
     data: { text: text.trim() },
-    meta: { source: "grok", cached: false, generatedAt: new Date().toISOString() },
+    meta: { source: "gemini", cached: false, generatedAt: new Date().toISOString() },
   };
 }

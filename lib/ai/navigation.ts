@@ -1,4 +1,4 @@
-import { generateJSON, MODELS } from "@/lib/ai/grok";
+import { generateJSON, MODELS } from "@/lib/ai/gemini";
 import type { AiResult } from "@/lib/types/ai";
 
 /** AI Navigation Guidance — routes a fan around live congestion, not just a static lookup. */
@@ -43,6 +43,6 @@ ${input.gateDensities.map((g) => `- ${g.gateName}: ${g.densityPct}% (${g.status}
 
   return {
     data,
-    meta: { source: "grok", cached: false, generatedAt: new Date().toISOString(), confidence: data.confidence },
+    meta: { source: "gemini", cached: false, generatedAt: new Date().toISOString(), confidence: data.confidence },
   };
 }

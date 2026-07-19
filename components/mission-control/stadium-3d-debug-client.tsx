@@ -11,7 +11,7 @@ function SimpleTestScene() {
 
   useEffect(() => {
     console.log("✅ Scene mounted");
-    console.log("Scene background color:", scene.background?.getHex?.());
+    console.log("Scene background color:", (scene.background as THREE.Color | null)?.getHex());
   }, [scene]);
 
   useEffect(() => {

@@ -61,9 +61,9 @@ export default function IncidentDetailPage() {
     if (incidentId) fetchIncident();
   }, [incidentId]);
 
-  useSocket("incident:updated", (payload) => {
+  useSocket("incident:update", (payload) => {
     if (payload.incidentId === parseInt(incidentId)) {
-      setIncident((prev) => prev ? { ...prev, status: payload.status } : null);
+      setIncident((prev) => prev ? { ...prev, status: payload.status as IncidentRow["status"] } : null);
     }
   });
 
@@ -90,7 +90,7 @@ export default function IncidentDetailPage() {
       <div className="flex min-h-screen flex-col">
         <TopBar title="Incident Details" left={<Link href="/ops/incidents"><Button variant="ghost" size="sm"><ArrowLeft size={18} /> Back</Button></Link>} />
         <div className="flex flex-1 items-center justify-center p-4">
-          <ErrorState title="Incident Not Found" message={error || "This incident no longer exists."} />
+          <ErrorState title="Incident Not Found" description={error || "This incident no longer exists."} />
         </div>
       </div>
     );
@@ -126,7 +126,10 @@ export default function IncidentDetailPage() {
                       <Badge className={getSeverityColor(incident.severity)}>
                         {incident.severity.toUpperCase()}
                       </Badge>
-                      <StatusChip status={incident.status} />
+                      <StatusChip
+                        tone={incident.status === "resolved" ? "success" : incident.status === "acknowledged" ? "info" : "warning"}
+                        label={incident.status.replace("_", " ")}
+                      />
                     </div>
                   </div>
 
@@ -192,30 +195,30 @@ export default function IncidentDetailPage() {
               <div className="space-y-4">
                 <AIReasoningCard
                   title="Incident Summary"
-                  icon={AlertTriangle}
-                  facts={[
+                  affectedFacts={[
                     `Type: ${incident.type}`,
                     `Severity: ${incident.severity}`,
                     `Location: ${incident.location_desc}`,
                     `Duration: ${Math.round((new Date(incident.updated_at).getTime() - new Date(incident.created_at).getTime()) / 60000)} minutes`,
                   ]}
-                  reasoning="Incident has been classified and tracked through resolution workflow."
+                  rationale="Incident has been classified and tracked through resolution workflow."
                   confidence={0.95}
+                  generatedAt={incident.updated_at}
                 />
 
                 <Divider />
 
                 <AIReasoningCard
                   title="Recommended Actions"
-                  icon={CheckCircle2}
-                  facts={[
+                  affectedFacts={[
                     incident.severity === "critical" ? "Deploy emergency response team immediately" : "Monitor situation closely",
                     "Notify relevant departments (medical/security/ops)",
                     "Establish incident perimeter if needed",
                     "Prepare public communication if necessary",
                   ]}
-                  reasoning="Actions tailored to incident severity and type."
+                  rationale="Actions tailored to incident severity and type."
                   confidence={0.88}
+                  generatedAt={incident.updated_at}
                 />
               </div>
             </GlassCard>
