@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "tsx watch server.ts",
-    "build": "next build --webpack",
+    "build": "next build",
     "start": "cross-env NODE_ENV=production tsx server.ts",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
@@ -16,7 +16,6 @@
     "generate-icons": "node scripts/generate-icons.mjs"
   },
   "dependencies": {
-    "@ducanh2912/next-pwa": "^10.2.9",
     "@google/genai": "^2.11.0",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.6.1",
