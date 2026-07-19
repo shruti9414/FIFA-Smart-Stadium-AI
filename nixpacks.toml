@@ -6,3 +6,5 @@ cmds = ["npm run build"]
 
 [variables]
 NIXPACKS_NODE_VERSION = "20"
+NODE_OPTIONS = "--max-old-space-size=4096"
+NEXT_TELEMETRY_DISABLED = "1"
