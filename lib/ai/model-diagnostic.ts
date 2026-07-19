@@ -26,7 +26,7 @@ export async function diagnoseAvailableModels(): Promise<string[]> {
   const client = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
   const workingModels: string[] = [];
 
-  console.log("🔍 Testing Gemini models...");
+  process.stdout.write("[diagnostic] Testing Gemini models...\n");
 
   for (const model of MODELS_TO_TEST) {
     try {
@@ -38,11 +38,11 @@ export async function diagnoseAvailableModels(): Promise<string[]> {
 
       if (response.text) {
         workingModels.push(model);
-        console.log(`✅ ${model} - WORKS`);
+        process.stdout.write(`[diagnostic] OK   ${model}\n`);
       }
     } catch (err) {
-      const error = err as any;
-      console.log(`❌ ${model} - ${error.message?.slice(0, 80) || "Failed"}`);
+      const message = err instanceof Error ? err.message : String(err);
+      process.stdout.write(`[diagnostic] FAIL ${model} - ${message.slice(0, 80)}\n`);
     }
   }
 

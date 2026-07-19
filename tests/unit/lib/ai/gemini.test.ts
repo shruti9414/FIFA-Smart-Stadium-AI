@@ -6,7 +6,7 @@ const mockGenerateContent = vi.hoisted(() => vi.fn());
 vi.mock("@/lib/env", () => ({
   getEnv: vi.fn(() => ({
     NODE_ENV: "test",
-    GEMINI_API_KEY: "test-api-key",
+    GEMINI_API_KEY: "placeholder-for-testing",
     GROK_API_KEY: undefined,
     DB_HOST: "localhost",
     DB_PORT: 3306,

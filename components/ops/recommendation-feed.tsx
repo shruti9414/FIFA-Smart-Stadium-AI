@@ -2,13 +2,12 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
-import { RefreshCw } from "lucide-react";
+import { RefreshCw, Sparkles } from "lucide-react";
 import { AIReasoningCard } from "@/components/shared/ai-reasoning-card";
 import { AIThinkingChip } from "@/components/shared/ai-thinking-chip";
 import { InlineErrorNotice } from "@/components/ui/error-state";
 import { EmptyState } from "@/components/ui/empty-state";
 import { IconButton } from "@/components/ui/icon-button";
-import { Sparkles } from "lucide-react";
 import type { AiRecommendation } from "@/lib/types/ai";
 import type { StadiumGate } from "@/lib/types/db";
 
@@ -45,7 +44,6 @@ export function RecommendationFeed({ gates, onFactClick }: Props) {
   }, []);
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- standard fetch-on-mount; setState only fires after the awaited fetch resolves, not synchronously.
     fetchRecommendations();
   }, [fetchRecommendations]);
 
